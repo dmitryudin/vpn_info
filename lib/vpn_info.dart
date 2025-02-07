@@ -13,7 +13,18 @@ class VpnInfo {
       );
 
       bool hasVpnConnection = networkInterfaces.any((interface) {
+        if (Platform.isIOS){
         final vpnPatterns = [
+          // "tun",
+          // "tap",
+          // "ppp",
+          // "pptp",
+          // "l2tp",
+          "ipsec",
+          // "vpn"
+        ];}
+        else{
+          final vpnPatterns = [
           "tun",
           "tap",
           "ppp",
@@ -22,6 +33,7 @@ class VpnInfo {
           "ipsec",
           "vpn"
         ];
+        }
         return vpnPatterns
             .any((pattern) => interface.name.toLowerCase().contains(pattern));
       });

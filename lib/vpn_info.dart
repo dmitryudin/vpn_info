@@ -11,28 +11,21 @@ class VpnInfo {
         includeLoopback: false,
         type: InternetAddressType.any,
       );
+      List<String> vpnPatterns = [];
 
       bool hasVpnConnection = networkInterfaces.any((interface) {
-        if (Platform.isIOS){
-        final vpnPatterns = [
-          // "tun",
-          // "tap",
-          // "ppp",
-          // "pptp",
-          // "l2tp",
-          "ipsec",
-          // "vpn"
-        ];}
-        else{
-          final vpnPatterns = [
-          "tun",
-          "tap",
-          "ppp",
-          "pptp",
-          "l2tp",
-          "ipsec",
-          "vpn"
-        ];
+        if (Platform.isIOS) {
+          vpnPatterns = [
+            // "tun",
+            // "tap",
+            // "ppp",
+            // "pptp",
+            // "l2tp",
+            "ipsec",
+            // "vpn"
+          ];
+        } else {
+          vpnPatterns = ["tun", "tap", "ppp", "pptp", "l2tp", "ipsec", "vpn"];
         }
         return vpnPatterns
             .any((pattern) => interface.name.toLowerCase().contains(pattern));

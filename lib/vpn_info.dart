@@ -16,12 +16,13 @@ class VpnInfo {
       bool hasVpnConnection = networkInterfaces.any((interface) {
         if (Platform.isIOS) {
           vpnPatterns = [
+            "ipsec4",
             // "tun",
             // "tap",
             // "ppp",
             // "pptp",
             // "l2tp",
-            "ipsec",
+            // "ipsec",
             // "vpn"
           ];
         } else {
